@@ -1,17 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import w from './assets/woman.png'
 import b from './assets/back.png'
 import p from './assets/play.png'
+import bag from './assets/bag.png'
+import search from './assets/search.png'
+import logo from './assets/logo.png'
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
 
     <header className="flex items-center justify-between px-60 py-10">
-      <img src="" alt="Logo" className="h-10 w-auto" />
+      <img src={logo} alt="Logo" className="h-24 w-auto mr-10" />
 
       <nav className="flex">
         <ul className="hidden md:flex space-x-32">
@@ -22,8 +23,8 @@ function App() {
         </ul>
 
         <div className="flex items-center pl-80 justify-evenly w-53 gap-12">
-          <img src="" alt="Search" className="h-6 w-6 cursor-pointer" />
-          <img src="" alt="Buy" className="h-6 w-6 cursor-pointer" />
+          <img src={search} alt="Search" className="h-6 w-6 cursor-pointer" />
+          <img src={bag} alt="Buy" className="h-6 w-6 cursor-pointer" />
           <button className="bg-yellow-300 text-black px-4 py-2 rounded-3xl hover:bg-yellow-300 hover:text-white transition w-52">
             Contact
           </button>
@@ -65,6 +66,64 @@ function App() {
 
 
 
+
+    </section>
+
+
+
+    <section className='text-center'>
+      
+      <h3 className=' font-bold text-red-400 mb-6'>CUSTOMER FAVORITES</h3>
+      <h1 className='font-bold text-5xl mb-16'>Popular Catagories</h1>
+    
+
+
+      <div className='flex justify-center gap-10'>
+        <div>
+          <img src="" alt="Hamburger" />
+          <p>Main Dish</p>
+          <p>86 dishes</p>
+        </div>
+
+        <div>
+          <img src="" alt="Hamburger" />
+          <p>Main Dish</p>
+          <p>86 dishes</p>
+        </div>
+      </div>
+    </section>
+
+    <section className='pl-40'>
+      <p className='font-bold text-red-400'>SPECIAL DISHES</p>
+      <div className='flex'>
+        <h1 className='font-bold text-5xl'>Standout Dishes <br></br> From Our Menu</h1>
+
+        <div className='gap-10 justify-end flex ml-auto mr-80'>
+          <button>&lt;</button>
+          <button>&gt;</button>
+        </div>
+      </div>
+
+      <div className='flex gap-10'>
+        <div>
+          <img src="" alt="Hamburger" />
+          <p>Main Dish</p>
+          <p>86 dishes</p>
+        </div>
+
+        <div>
+          <img src="" alt="Hamburger" />
+          <p>Main Dish</p>
+          <p>86 dishes</p>
+        </div>
+
+        <div>
+          <img src="" alt="Hamburger" />
+          <p>Main Dish</p>
+          <p>86 dishes</p>
+        </div>
+
+      </div>
 
     </section>
     </>
