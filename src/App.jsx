@@ -5,6 +5,11 @@ import p from './assets/play.png'
 import bag from './assets/bag.png'
 import search from './assets/search.png'
 import logo from './assets/logo.png'
+import pastel from './assets/pastel.png'
+import coca from './assets/coca.png'
+import pepsi from './assets/pepsi.png'
+import Card from './components/card'
+
 
 function App() {
 
@@ -12,7 +17,7 @@ function App() {
     <>
 
     <header className="flex items-center justify-between px-60 py-10">
-      <img src={logo} alt="Logo" className="h-24 w-auto mr-10" />
+      <img src={logo} alt="Logo" className="h-24 w-auto mr-10 " />
 
       <nav className="flex">
         <ul className="hidden md:flex space-x-32">
@@ -33,19 +38,21 @@ function App() {
     </header>
 
 
-
+    
     <section className="flex  items-center justify-evenly gap-10" style={{ height: '60vh' }}>
       <div className="">
-        <h1 className="text-5xl text-b font-black pb-10">Dive into Delights <br></br> Of Delectable 
-          <span className="text-yellow-300"> Food </span>
+        <h1 className="text-5xl text-b font-black pb-10">
+          Aqui, o intervalo <br></br>tem mais 
+          <span className="text-yellow-300"> sabor! </span>  <br></br>Sua pausa merece o melhor 
+          
         </h1>
-        <p className='pb-10'>Where Each Plate Weaves a Story of Culinary Mastery and Passionate Craftsmanship</p>
+        <p className='pb-10'>Clique no botão abaixo e peça já seu lanche</p>
 
         <div className="gap-10 flex">
           <button className='bg-yellow-400 p-3 rounded-3xl text-white font-bold w-48 shadow-xl hover:bg-yellow-300 transition-colors'>
-            Order Now
+            Fazer pedido
           </button>
-          <button className='font-bold hover:shadow-yellow-200'>Watch Video</button>
+          <button className='font-bold hover:shadow-yellow-200'>Videos</button>
           <button className="bg-white rounded-full h-14 w-14 flex items-center justify-center shadow-xl hover:shadow-yellow-100">
             <img 
               src={p} 
@@ -73,58 +80,72 @@ function App() {
 
     <section className='text-center'>
       
-      <h3 className=' font-bold text-red-400 mb-6'>CUSTOMER FAVORITES</h3>
-      <h1 className='font-bold text-5xl mb-16'>Popular Catagories</h1>
+      <h3 className=' font-bold text-red-400 mb-6'>Os mais pedidos</h3>
+      <h1 className='font-bold text-5xl mb-16'>Popular</h1>
     
 
 
-      <div className='flex justify-center gap-10'>
-        <div>
-          <img src="" alt="Hamburger" />
-          <p>Main Dish</p>
-          <p>86 dishes</p>
-        </div>
+      <div className='flex  justify-center gap-10 mt-14'>
+        <Card img={pastel}   alt="Product Image"
+          title="Pastel"
+          desc="Descrição do produto"/>
 
-        <div>
-          <img src="" alt="Hamburger" />
-          <p>Main Dish</p>
-          <p>86 dishes</p>
-        </div>
+        <Card img={coca}  alt="Product Image"
+          title="Coca cola"
+          desc="Descrição do produto" h='h-26' w='w-24'/>
+        <Card img={pepsi}   alt="Product Image"
+          title="Pepsi"
+          desc="Descrição do produto" h='h-26' w='w-16'/>
+
+          
       </div>
     </section>
 
-    <section className='pl-40'>
-      <p className='font-bold text-red-400'>SPECIAL DISHES</p>
-      <div className='flex'>
-        <h1 className='font-bold text-5xl'>Standout Dishes <br></br> From Our Menu</h1>
+    <section className='pl-40 mt-24'>
+      <p className='font-bold text-red-400'>MENU</p>
+      <div className='flex mt-7'>
+        <h1 className='font-bold text-5xl'>Especialidades <br></br> do nosso menu</h1>
 
         <div className='gap-10 justify-end flex ml-auto mr-80'>
-          <button>&lt;</button>
-          <button>&gt;</button>
+          <button className='hover:bg-yellow-400 transition rounded-full w-16 h-16'>&lt;</button>
+          <button className='hover:bg-yellow-400 rounded-full w-16 h-16'>&gt;</button>
         </div>
       </div>
 
-      <div className='flex gap-10'>
-        <div>
-          <img src="" alt="Hamburger" />
-          <p>Main Dish</p>
-          <p>86 dishes</p>
-        </div>
+      <div className='flex gap-10 mt-14 justify-center '>
+        <Card img={pastel}   alt="Product Image"
+            title="Pastel"
+            desc="Descrição do produto"/>
 
-        <div>
-          <img src="" alt="Hamburger" />
-          <p>Main Dish</p>
-          <p>86 dishes</p>
-        </div>
+          <Card img={coca}  alt="Product Image"
+            title="Coca cola"
+            desc="Descrição do produto" h='h-26' w='w-24'/>
+          <Card img={pepsi}   alt="Product Image"
+            title="Pepsi"
+            desc="Descrição do produto" h='h-26' w='w-16'/>
 
-        <div>
-          <img src="" alt="Hamburger" />
-          <p>Main Dish</p>
-          <p>86 dishes</p>
-        </div>
 
       </div>
 
+
+      <footer className='mt-96 p-12 flex '>
+        <div className='mr-24'>
+          <img src={logo} alt="Logo" className="h-24 w-auto mr-10 " />
+          <p className=''>Savor the artistry where<br></br> every dish is a culinary<br></br> masterpice</p>
+
+        </div>
+
+        <div>
+          <h3 className='font-bold text-xl'>Contact Us</h3>
+          <nav>
+            <ul>
+              <li>leo1ramosf@gmail.com</li>
+              <li>Linkedin</li>
+              <li>portfolio</li>
+            </ul>
+          </nav>
+        </div>
+      </footer>
     </section>
     </>
   )
