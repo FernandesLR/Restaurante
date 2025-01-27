@@ -12,31 +12,69 @@ import Card from './components/card'
 
 
 function App() {
+  const [isVisible , setIsVisible] = useState(false)
+
+  const toggleMenu = () => {
+    setIsVisible(!isVisible); // Alterna entre mostrar e esconder
+  }
 
   return (
     <>
+     <header className="flex items-center justify-between px-6 md:px-48 pt-6">
+      {/* Logo */}
+      <img
+        src={logo}
+        alt="Sabor e Arte"
+        className="md:w-40 w-24 hover:scale-110 md:pr-10"
+      />
 
-    <header className="flex items-center justify-between px-60 py-10">
-      <img src={logo} alt="Logo" className="h-24 w-auto mr-10 " />
+      {/* Navegação */}
+      <nav className="relative">
+        <ul className="flex items-center gap-8">
+          {/* Menu principal */}
+          <div
+            id="menu"
+            className={`${
+              isVisible
+                ? "flex flex-col absolute top-full left-0 w-full bg-white shadow-lg p-4 md:static md:flex-row"
+                : "hidden md:flex md:gap-12"
+            }`}
+          >
+            <li className="hover:scale-110 hover:text-yellow-400">
+              <a href="#home">HOME</a>
+            </li>
+            <li className="hover:scale-110 hover:text-yellow-400">
+              <a href="#menu">MENU</a>
+            </li>
+            <li className="hover:scale-110 hover:text-yellow-400">
+              <a href="#about">ABOUT</a>
+            </li>
+          </div>
 
-      <nav className="flex">
-        <ul className="hidden md:flex space-x-32">
-          <li className="hover:text-yellow-300 cursor-pointer">Home</li>
-          <li className="hover:text-yellow-300 cursor-pointer">Menu</li>
-          <li className="hover:text-yellow-300 cursor-pointer">Services</li>
-          <li className="hover:text-yellow-300 cursor-pointer">Offers</li>
+          {/* Ícones */}
+          <li className="hover:scale-110">
+            <a href="#search">
+              <img src={search} alt="Search" />
+            </a>
+          </li>
+          <li className="hover:scale-110">
+            <a href="#bag">
+              <img src={bag} alt="Bag" />
+            </a>
+          </li>
+
+          {/* Botão hamburguer */}
+          <div
+            className="w-14 cursor-pointer flex flex-col md:hidden"
+            onClick={toggleMenu}
+          >
+            <div className="h-1 bg-black mb-1"></div>
+            <div className="h-1 bg-black mb-1"></div>
+            <div className="h-1 bg-black"></div>
+          </div>
         </ul>
-
-        <div className="flex items-center pl-80 justify-evenly w-53 gap-12">
-          <img src={search} alt="Search" className="h-6 w-6 cursor-pointer" />
-          <img src={bag} alt="Buy" className="h-6 w-6 cursor-pointer" />
-          <button className="bg-yellow-300 text-black px-4 py-2 rounded-3xl hover:bg-yellow-300 hover:text-white transition w-52">
-            Contact
-          </button>
-        </div>
       </nav>
     </header>
-
 
     
     <section className="flex  items-center justify-evenly gap-10" style={{ height: '60vh' }}>
