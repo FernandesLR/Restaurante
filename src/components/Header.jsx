@@ -15,7 +15,7 @@ function Header (){
               <img
                 src={logo}
                 alt="Sabor e Arte"
-                className="md:w-40 w-24 hover:scale-110 md:pr-10"
+                className="md:w-40 w-24 hover:scale-110 transition md:pr-10"
               />
         
               {/* Navegação */}
