@@ -1,19 +1,26 @@
-import { Link } from "react-router-dom"
+import { useCallback } from 'react';
+import React from 'react';
 
-
-export default function Card({img, alt, title, desc, qtd, h='h-24', w='w-44'}){
+function Card({ id = 0, img, alt, title, desc, qtd, h = 'h-24', w = '0', addToCart }) {
     
-    return(
-        <>
-        <Link to={"/product"} >
-        <div className='flex  justify-center items-center gap-10 mt-14 w-96 hover:scale-110 hover:transition-transform'>
-            <div className='shadow-2xl p-12 text-center rounded-lg'>
-                <img src={img} alt={alt} className={`${h} ${w}`}/>
-                <p className='mt-5'>{title}</p>
-                <p>{qtd} restantes</p>
-            </div>
+    // Memorizando a função para evitar recriação a cada renderização
+    const selecionado = useCallback(() => {
+        addToCart({ id, img, t: title, p: qtd });
+    }, [id, img, title, qtd, addToCart]);  // Apenas recriar se esses valores mudarem
+
+    return (
+        <div className="flex justify-center items-center gap-10 mt-14 w-96 hover:scale-110 transition">
+            <button onClick={selecionado}>
+                <div className="shadow-2xl p-14 text-center rounded-lg">
+                    <img src={img} alt={alt} className={`${h} ${w} m-auto`} />
+                    <p className="mt-5 font-bold">{title}</p>
+                    <p>{desc}</p>
+                    <p>R$: {qtd}</p>
+                </div>
+            </button>
         </div>
-        </Link>
-        </>
-    )
+    );
 }
+
+// Usando React.memo para evitar re-renderizações desnecessárias
+export default React.memo(Card);

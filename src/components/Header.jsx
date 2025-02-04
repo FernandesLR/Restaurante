@@ -2,6 +2,7 @@ import { useState } from 'react'
 import bag from '../assets/bag.png'
 import search from '../assets/search.png'
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 function Header (){
     const [isVisible , setIsVisible] = useState(false)
@@ -12,11 +13,13 @@ function Header (){
     return(
         <header className="flex items-center justify-between px-6 md:px-48 pt-6">
               {/* Logo */}
-              <img
-                src={logo}
-                alt="Sabor e Arte"
-                className="md:w-40 w-24 hover:scale-110 transition md:pr-10"
-              />
+              <Link to={"/"}>
+                <img
+                  src={logo}
+                  alt="Sabor e Arte"
+                  className="md:w-40 w-24 hover:scale-110 transition md:pr-10"
+                />
+              </Link>
         
               {/* Navegação */}
               <nav className="relative">
@@ -31,13 +34,13 @@ function Header (){
                     }`}
                   >
                     <li className="hover:scale-110 hover:text-yellow-400">
-                      <a href="#home">HOME</a>
+                      <Link to="/">HOME</Link>
                     </li>
                     <li className="hover:scale-110 hover:text-yellow-400">
-                      <a href="#menu">MENU</a>
+                      <a href='#menu'>MENU</a>
                     </li>
                     <li className="hover:scale-110 hover:text-yellow-400">
-                      <a href="#about">ABOUT</a>
+                      <Link to="/Sobre">ABOUT</Link>
                     </li>
                   </div>
         

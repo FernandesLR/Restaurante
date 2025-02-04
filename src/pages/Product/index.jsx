@@ -2,6 +2,9 @@ import Header from "../../components/Header.jsx"
 import Footer from "../../components/Footer"
 import Card from "../../components/card"
 
+
+// Página de carrinho, ela é chamada através da página HOME
+
 function Product(){
     return(
         <>
@@ -9,7 +12,7 @@ function Product(){
             <div className="flex flex-col md:flex-row gap-10 items-center justify-center mt-32 md:pl-40 md:pr-40">
                 <Card></Card>
                 <div className="flex flex-col gap-12">
-                <div className="flex gap-12">
+                <div className="flex gap-12 justify-center md:justify-normal">
                     <h1>Nome do produto</h1>
                     <p>R$:12</p>
 
