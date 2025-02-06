@@ -1,6 +1,6 @@
 import Header from "../../components/Header.jsx"
-import Footer from "../../components/Footer"
-import Card from "../../components/card"
+import Footer from "../../components/Footer.jsx"
+import Card from "../../components/card.jsx"
 
 
 // Página de carrinho, ela é chamada através da página HOME
