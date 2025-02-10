@@ -1,3 +1,5 @@
+<?php
+
 class Produto {
     private $id;
     private $produto;
@@ -51,7 +53,4 @@ class Produto {
     }
 }
 
-$p = new Produto();
-
-
-$p->getTitle();
+?>
