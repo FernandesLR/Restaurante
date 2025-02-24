@@ -65,6 +65,12 @@ function Header (){
                     <div className="h-1 bg-black mb-1"></div>
                     <div className="h-1 bg-black"></div>
                   </div>
+
+                  <li>
+                    <Link to="/Login">
+                      <button className='border border-black p-2 shadow-md hover:scale-105 transition hover:bg-yellow-100'>Login/Cadastrar</button>
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </header>
