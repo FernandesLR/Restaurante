@@ -1,13 +1,22 @@
 <?php
-require_once '../model/Produto.php';
+
+namespace App\controller;
+
+
+use App\service\ProdutoService;
 
 class ProdutoController{
-    protected $prod;
+    protected $service;
+
+    public function __construct()
+    {
+        $this->service = new ProdutoService();
+    }
 
     public function getProdutos(){
-        $this->prod = new Produto();
-
+        return $this->service->getProdutos();
     }
+
 
 }
 
