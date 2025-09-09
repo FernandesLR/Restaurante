@@ -1,4 +1,6 @@
 <?php
+namespace App\model;
+
 
 class Produto {
     private $id;
@@ -6,6 +8,14 @@ class Produto {
     private $preco;
     private $img;
     private $title;
+
+    public function __construct($id = null, $produto = null, $preco = null, $img = null, $title = null) {
+        $this->id = $id;
+        $this->produto = $produto;
+        $this->preco = $preco;
+        $this->img = $img;
+        $this->title = $title;
+    }
 
     // Getter e Setter para o ID
     public function getId() {
