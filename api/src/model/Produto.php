@@ -4,14 +4,14 @@ namespace App\model;
 
 class Produto {
     private $id;
-    private $produto;
+    private $descricao;
     private $preco;
     private $img;
     private $title;
 
-    public function __construct($id = null, $produto = null, $preco = null, $img = null, $title = null) {
+    public function __construct($id = null, $descricao = null, $preco = null, $img = null, $title = null) {
         $this->id = $id;
-        $this->produto = $produto;
+        $this->descricao = $descricao;
         $this->preco = $preco;
         $this->img = $img;
         $this->title = $title;
@@ -27,12 +27,12 @@ class Produto {
     }
 
     // Getter e Setter para o Produto
-    public function getProduto() {
-        return $this->produto;
+    public function getDescricao() {
+        return $this->descricao;
     }
 
-    public function setProduto($produto) {
-        $this->produto = $produto;
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
     }
 
     // Getter e Setter para o Preço
