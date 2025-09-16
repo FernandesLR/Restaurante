@@ -13,8 +13,13 @@ class ProdutoController{
         $this->service = new ProdutoService();
     }
 
-    public function getProdutos(){
-        return $this->service->getProdutos();
+    public function getProdutos(): array{
+        $produtos = $this->service->getProdutos();
+
+        return [
+            'status' => 200,
+            'data' => $produtos
+        ];
     }
 
 
