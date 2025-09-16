@@ -11,7 +11,7 @@ class Conexao{
     public function conectar(){
         $user = "root";
         $pass = "root";
-        $dbName = "loja";
+        $dbName = "lanchonete";
         $local = "localhost";
         
         try{
@@ -21,7 +21,7 @@ class Conexao{
                 PDO::ATTR_EMULATE_PREPARES => false // Usa prepared statements reais que protegem contra injeções sql
             ]);
         }catch(PDOException $e){
-            echo "Erro ao conectar: " + $e;
+            echo "Erro ao conectar: " . $e->getMessage();
         }
 
     }
