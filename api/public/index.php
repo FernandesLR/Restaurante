@@ -1,6 +1,5 @@
 <?php
-
-require '/src/controller/ProdutoController.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\controller\ProdutoController;
 
@@ -24,7 +23,20 @@ if($uri === '/' && $method === 'GET'){
     http_response_code($response['status']);
 
     return json_encode($response['data']);
+}else if (strpos($uri, '/produto') === 0 && $method === 'GET') {
+    $id = $_GET['id'] ?? null;
+
+    if ($id) {
+        $response = $controller->getProdutoPorId($id);
+        http_response_code($response['status']);
+        echo json_encode($response['data']);
+    } else {
+        http_response_code(400);
+        echo json_encode(["erro" => "ID não informado"]);
+    }
 }
+
+
 
 
 
