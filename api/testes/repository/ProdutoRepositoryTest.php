@@ -14,19 +14,21 @@ class ProdutoRepositoryTest extends TestCase{
         $this->p = new ProdutoRepository((new Conexao)->conectar());
     }
 
-    // Testa se o repository está retornando os dados do banco em forma de objeto da classe Produtos
-    public function testGetProdutosRetornaVerdadeiro(){
+
+    public function testGetProdutosRetornaArrayDeProdutos() {
         $resultado = $this->p->getProdutos();
 
         $this->assertIsArray($resultado);
+        $this->assertNotEmpty($resultado); 
+        $this->assertInstanceOf(Produto::class, $resultado[0]);
+    }
 
-        if(count($resultado) > 0){
-            $this->assertInstanceOf(Produto::class, $resultado[0]);
-        }
-
-
-
+    public function testGetProdutoByIdRetornaProdutoValido() {
+        $resultado = $this->p->getProdutoById(2);
+        
+        $this->assertInstanceOf(Produto::class, $resultado);
+        $this->assertEquals(2, $resultado->getId());
+        $this->assertNotEmpty($resultado->getTitle());
+        $this->assertNotEmpty($resultado->getPreco());
     }
 }
-
-?>
