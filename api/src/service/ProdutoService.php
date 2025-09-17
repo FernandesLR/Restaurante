@@ -3,6 +3,7 @@
 namespace App\service;
 
 use App\config\Conexao;
+use App\model\Produto;
 use App\repository\ProdutoRepository;
 
 
@@ -14,8 +15,12 @@ class ProdutoService{
         $cnx = (new Conexao())->conectar();
         $this->produtoRepo = new ProdutoRepository($cnx);
     }
-    public function getProdutos(){
+    public function getProdutos():array{
         return $this->produtoRepo->getProdutos();
+    }
+
+    public function getProduto($id):Produto{
+        return $this->produtoRepo->getProdutoById($id);
     }
     
 }
