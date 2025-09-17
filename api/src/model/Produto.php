@@ -1,8 +1,9 @@
 <?php
 namespace App\model;
 
+use JsonSerializable;
 
-class Produto {
+class Produto implements \JsonSerializable{
     private $id;
     private $descricao;
     private $preco;
@@ -15,6 +16,17 @@ class Produto {
         $this->preco = $preco;
         $this->img = $img;
         $this->title = $title;
+    }
+
+
+    public function jsonSerialize(): array {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'descricao' => $this->getDescricao(),
+            'preco' => $this->getPreco(),
+            'img' => $this->getImg()
+        ];
     }
 
     // Getter e Setter para o ID
