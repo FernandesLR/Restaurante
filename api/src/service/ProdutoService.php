@@ -15,12 +15,17 @@ class ProdutoService{
         $cnx = (new Conexao())->conectar();
         $this->produtoRepo = new ProdutoRepository($cnx);
     }
-    public function getProdutos():array{
-        return $this->produtoRepo->getProdutos();
+    public function getProdutos(): ?array{
+        $resultado = $this->produtoRepo->getProdutos();
+
+        return $resultado?:null;
+
     }
 
-    public function getProduto($id):Produto{
-        return $this->produtoRepo->getProdutoById($id);
+    public function getProduto($id): ?Produto{
+        $resultado = $this->produtoRepo->getProdutoById($id);
+    
+        return $resultado?:null;
     }
     
 }
