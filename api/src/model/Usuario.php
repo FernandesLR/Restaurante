@@ -61,7 +61,7 @@ class Usuario implements \JsonSerializable{
         $this->email = $email;
     }
 
-    public function getSenha(): string {
+    public function getSenha(): ?string {
         return $this->senha;
     }
 
