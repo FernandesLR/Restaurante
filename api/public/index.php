@@ -1,14 +1,17 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\config\Conexao;
 use App\controller\ProdutoController;
-
-$controller = new ProdutoController();
+use App\controller\UsuarioController;
+use App\repository\UsuarioRepository;
+use App\service\UsuarioService;
 
 // Permitir que qualquer origem faça requisições
 header('Access-Control-Allow-Origin: *'); // Para produção, restrinja para o domínio do frontend
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Content-Type: application/json; charset=utf-8');
 
 
 
@@ -16,13 +19,26 @@ header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 $uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
-echo "ok";
+
+// Injeção de dependencias
+$controller = new ProdutoController();
+// O controller pede um objeto de usuário service e o service pede um objeto repository, o repository pede um objeto de PDO
+$usuarioController = new UsuarioController(
+    new UsuarioService(
+        new UsuarioRepository(
+            (new Conexao)->conectar()
+        )
+    )
+);
+
+
 
 if($uri === '/' && $method === 'GET'){
     $response = $controller->getProdutos();
     http_response_code($response['status']);
 
-    return json_encode($response['data']);
+    echo json_encode($response['data']);
+    exit;
 }else if (strpos($uri, '/produto') === 0 && $method === 'GET') {
     $id = $_GET['id'] ?? null;
 
@@ -36,6 +52,19 @@ if($uri === '/' && $method === 'GET'){
     }
 }
 
+if($uri === '/login' && $method === "POST"){
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    $email = $input['email'] ?? null;
+    $senha = $input['senha'] ?? null;
+
+    $response = $usuarioController->rotaLogin($email, $senha);
+
+    http_response_code($response['status']);
+    echo json_encode($response);
+}
+
+?>
 
 
 
