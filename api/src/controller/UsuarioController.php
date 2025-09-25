@@ -40,4 +40,30 @@ class UsuarioController{
     }
 
 
+    public function cadastrarUsuarioRota($email, $senha, $nome, $cpf){
+        try{
+            $res = $this->usuario->cadastrar($email, $senha, $nome, $cpf);
+
+            if(!$res){
+                return [
+                    'status' => 404,
+                    'data' => null,
+                    'message' => "Não foi possivel cadastrar o usuário"
+                ];
+            }
+
+            return [
+                'status' => 200,
+                'data' => $res
+            ];
+        }catch(\Exception $e){
+            return [
+                'status' => 500,
+                'data' => null,
+                'message' => "Erro interno: ".$e->getMessage()
+            ];
+        }
+    }
+
+
 }
