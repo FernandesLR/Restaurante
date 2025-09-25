@@ -30,8 +30,6 @@ class UsuarioService {
         if (!$this->compararSenha($senha, $usuario->getSenha())) {
             return null;
         }
-
-        // remove o hash da senha antes de retornar
         $usuario->setSenha(null);
 
         return $usuario;
@@ -50,6 +48,35 @@ class UsuarioService {
     private function compararSenha(string $senhaDigitada, string $hashDoBanco): bool {
         return password_verify($senhaDigitada, $hashDoBanco);
     }
+
+    public function cadastrar(string $email, string $senha, string $nome, string $cpf): ?bool {
+        
+        // valida email
+        if (!$this->verificaEmail($email)) {
+            return null;
+        }
+
+        // valida senha forte
+        if (!$this->verificaSenhaForte($senha)) {
+            return null;
+        }
+
+        // criptografa senha
+        $hash = password_hash($senha, PASSWORD_BCRYPT);
+
+        // cria objeto Usuario
+        $usuario = new Usuario();
+        $usuario->setEmail($email);
+        $usuario->setNome($nome);
+        $usuario->setCpf($cpf);
+        $usuario->setSenha($hash);
+
+        // persiste via repository
+        $salvo = $this->usuRep->salvar($usuario);
+
+        return $salvo;
+    }
+
 }
 
 ?>
