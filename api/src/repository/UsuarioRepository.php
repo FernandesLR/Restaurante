@@ -41,6 +41,24 @@ class UsuarioRepository{
 
     }
 
+    public function salvar(Usuario $usuario): bool {
+        try {
+            $stmt = $this->conexao->prepare(
+                "INSERT INTO usuarios (cpf, nome, email, senha) VALUES (:cpf, :nome, :email, :senha)"
+            );
+
+            return $stmt->execute([
+                ':cpf' => $usuario->getCpf(),
+                ':nome' => $usuario->getNome(),
+                ':email' => $usuario->getEmail(),
+                ':senha' => $usuario->getSenha()
+            ]);
+        } catch (PDOException $e) {
+            throw new \RuntimeException("Erro ao salvar usuário: " . $e->getMessage());
+        }
+    }
+
+
 
 }
 
