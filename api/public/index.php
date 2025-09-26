@@ -63,6 +63,20 @@ if($uri === '/login' && $method === "POST"){
     http_response_code($response['status']);
     echo json_encode($response);
 }
+if($uri === '/cadastro' && $method === "POST"){
+    $input = json_decode(file_get_contents('php://input'), true);
+    $email = $input['email'] ?? null;
+    $senha = $input['senha'] ?? null;
+    $cpf = $input['cpf'] ?? null;
+    $nome = $input['nome'] ?? null;
+
+    $response = $usuarioController->cadastrarUsuarioRota($email, $senha, $nome, $cpf);
+
+
+    http_response_code($response['status']);
+
+    echo json_encode($response);
+}
 
 ?>
 
