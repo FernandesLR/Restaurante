@@ -5,6 +5,7 @@ namespace App\repository;
 use App\model\Usuario;
 use PDO;
 use PDOException;
+use SebastianBergmann\Environment\Console;
 
 class UsuarioRepository{
     private PDO $conexao;
@@ -18,7 +19,7 @@ class UsuarioRepository{
 
     public function buscaEmail($email): ?Usuario{
         try{
-            $stmt = $this->conexao->prepare("SELECT * FROM usuario WHERE email = :email");
+            $stmt = $this->conexao->prepare("SELECT * FROM usuarios WHERE email = :email");
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             
             $stmt->execute();
