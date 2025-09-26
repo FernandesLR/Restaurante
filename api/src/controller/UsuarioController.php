@@ -46,14 +46,14 @@ class UsuarioController{
 
             if(!$res){
                 return [
-                    'status' => 404,
+                    'status' => 400,
                     'data' => null,
                     'message' => "Não foi possivel cadastrar o usuário"
                 ];
             }
 
             return [
-                'status' => 200,
+                'status' => 201,
                 'data' => $res
             ];
         }catch(\Exception $e){
