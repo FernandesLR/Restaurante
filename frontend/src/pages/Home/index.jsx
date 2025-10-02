@@ -9,6 +9,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Carrinho from '../../components/carrinho'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const [produtos, setProdutos] = useState([]);      // Carrinho
@@ -44,7 +45,7 @@ function Home() {
 
   return (
     <>
-    
+
       <Header />
 
       <section 
@@ -94,18 +95,20 @@ function Home() {
         {/* Produtos do backend */}
         {loading ? (
           <p>Carregando produtos...</p>
-        ) : (
+        ) :(
           dados.length > 0 &&
           dados.map((item) => (
-            <Card
-              key={item.id}
-              id={item.id}
-              img={item.img || pastel} // caso não venha img
-              title={item.nome}
-              desc={item.descricao}
-              qtd={item.qtd}
-              addToCart={addToCart}
-            />
+            <Link key={item.id} to={`/produto?id=${item.id}`}>
+              <Card
+                key={item.id}
+                id={item.id}
+                img={item.img || pastel} // caso não venha img
+                title={item.nome}
+                desc={item.descricao}
+                preco={item.preco}
+                addToCart={addToCart}
+              />
+            </Link>
           ))
         )}
       </div>
@@ -118,7 +121,7 @@ function Home() {
         <h1 className='font-bold text-5xl mb-16'>Especialidades</h1>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-14 ml-10'>
-          <Card id={3} img={pastel} title="Pastel" desc="Descrição do produto" qtd="12" addToCart={addToCart} />
+          <Card id={3} img={pastel} title="Pastel" desc="Descrição do produto" preco="12" addToCart={addToCart} />
         </div>
       </section>
       
