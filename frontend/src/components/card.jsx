@@ -5,8 +5,9 @@ function Card({ id = 0, img, alt, title, desc, preco, h = 'h-24', w = '0', addTo
     
     // Memorizando a função para evitar recriação a cada renderização
     const selecionado = useCallback(() => {
-        addToCart({ id, img, t: title, preco: preco });
-    }, [id, img, title, preco, addToCart]);  // Apenas recriar se esses valores mudarem
+        addToCart({ id, img, title, preco, desc });
+    }, [id, img, title, preco, desc, addToCart]);
+
 
     return (
         <div className="flex justify-center items-center gap-10 mt-14 w-96 hover:scale-110 transition">
