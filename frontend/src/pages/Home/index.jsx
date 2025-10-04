@@ -102,8 +102,8 @@ function Home() {
               <Card
                 key={item.id}
                 id={item.id}
-                img={item.img || pastel} // caso não venha img
-                title={item.nome}
+                img={item.img}
+                title={item.title}
                 desc={item.descricao}
                 preco={item.preco}
                 addToCart={addToCart}
