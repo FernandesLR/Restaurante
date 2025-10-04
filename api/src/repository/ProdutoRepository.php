@@ -26,6 +26,7 @@ class ProdutoRepository {
             $produto->setDescricao($row['descricao']);
             $produto->setTitle($row['title']);
             $produto->setPreco($row['preco']);
+            $produto->setImg($row['img']);
 
             $listaPd[] = $produto;
         }
