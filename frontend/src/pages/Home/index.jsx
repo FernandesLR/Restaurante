@@ -9,7 +9,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Carrinho from '../../components/carrinho'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
 
 function Home() {
   const [produtos, setProdutos] = useState([]);      // Carrinho
@@ -83,22 +83,16 @@ function Home() {
       </section>
 
 
-      {/* POPULARES */}
-    <section className="text-center mt-40">
-      <h3 className="font-bold text-red-400 mb-6">Os mais pedidos</h3>
-      <h1 className="font-bold text-5xl mb-16">Popular</h1>
 
-      <div
-        id="menu"
-        className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-14 mx-auto place-items-center max-w-6xl"
-      >
-        {/* Produtos do backend */}
-        {loading ? (
-          <p>Carregando produtos...</p>
-        ) :(
-          dados.length > 0 &&
-          dados.map((item) => (
-            <Link key={item.id} to={`/produto?id=${item.id}`}>
+      {/* MENU */}
+      <section className='text-center mt-40'>
+        <h3 className=' font-bold text-red-400 mb-6'>MENU</h3>
+        <h1 className='font-bold text-5xl mb-16'>Especialidades</h1>
+
+        <div id="menu-especialidades" className='grid grid-cols-1 md:grid-cols-3 gap-10 mt-14 mx-auto place-items-center max-w-6xl'>
+          {dados
+            .filter((item) => ["Pastel", "Coca Cola", "Pepsi"].includes(item.title))
+            .map((item) => (
               <Card
                 key={item.id}
                 id={item.id}
@@ -108,22 +102,41 @@ function Home() {
                 preco={item.preco}
                 addToCart={addToCart}
               />
-            </Link>
+          ))}
+        </div>
+
+      </section>
+
+            {/* POPULARES */}
+    <section className="text-center mt-40">
+      <h3 className="font-bold text-red-400 mb-6">Os mais pedidos</h3>
+      <h1 className="font-bold text-5xl mb-16">Popular</h1>
+
+      <div
+        id="menu-populares"
+        className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-14 mx-auto place-items-center max-w-6xl"
+      >
+        {/* Produtos do backend */}
+        {loading ? (
+          <p>Carregando produtos...</p>
+        ) :(
+          dados.length > 0 &&
+          dados.map((item) => (
+              <Card
+                key={item.id}
+                id={item.id}
+                img={item.img}
+                title={item.title}
+                desc={item.descricao}
+                preco={item.preco}
+                addToCart={addToCart}
+              />
           ))
         )}
       </div>
     </section>
 
-
-      {/* MENU */}
-      <section className='text-center mt-40'>
-        <h3 className=' font-bold text-red-400 mb-6'>MENU</h3>
-        <h1 className='font-bold text-5xl mb-16'>Especialidades</h1>
-
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-14 ml-10'>
-          <Card id={3} img={pastel} title="Pastel" desc="Descrição do produto" preco="12" addToCart={addToCart} />
-        </div>
-      </section>
+      
       
       <Carrinho produtos={produtos} setProdutos={setProdutos} />
       <Footer />
