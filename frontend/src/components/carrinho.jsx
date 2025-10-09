@@ -1,12 +1,50 @@
 import c from "../assets/carrinho.png";
 import { useState } from "react";
 
+
 function Carrinho({ produtos, setProdutos }) {
     const [isVisible, setValue] = useState(false);
 
     function toggle() {
         setValue(!isVisible);
     }
+
+    async function btnFinalizarCompraClicado() {
+        if (produtosAgrupados.length === 0) { 
+            console.log("Nenhum produto foi selecionado para efetuar a compra");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:8000/checkout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(produtosAgrupados),
+            });
+
+            if (!response.ok) {
+                console.error("Erro ao criar pagamento:", response.status);
+                return;
+            }
+
+            const data = await response.json();
+
+            console.log("Resposta do backend:", data);
+
+            if (data?.data?.url) {
+                // Redireciona o usuário para o checkout do Mercado Pago
+                window.location.href = data.data.url;
+            } else {
+                console.error("URL de pagamento não recebida");
+            }
+
+        } catch (error) {
+            console.error("Erro ao finalizar compra:", error);
+        }
+    }
+
 
     function removerItem(id) {
         setProdutos((prev) => {
@@ -67,7 +105,7 @@ function Carrinho({ produtos, setProdutos }) {
                             />
                         </div>
                     </div>
-                    <span>R$ {produto.p * produto.quantidade}</span>
+                    <span>R$ {produto.preco * produto.quantidade}</span>
                     <button
                         className="text-white bg-red-500 p-2"
                         onClick={() => removerItem(produto.id)}
@@ -86,7 +124,7 @@ function Carrinho({ produtos, setProdutos }) {
         >
             Fechar
         </button>
-        <button className="bg-red-400 p-3 text-yellow-100 rounded-2xl font-bold right-0 hover:scale-110 transition">
+        <button className="bg-red-400 p-3 text-yellow-100 rounded-2xl font-bold right-0 hover:scale-110 transition" onClick={btnFinalizarCompraClicado}>
             Finalizar compra
         </button>
     </div>
