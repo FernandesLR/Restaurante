@@ -5,6 +5,7 @@ use App\config\Conexao;
 use App\controller\ProdutoController;
 use App\controller\UsuarioController;
 use App\repository\UsuarioRepository;
+use App\service\CheckoutService;
 use App\service\UsuarioService;
 
 // Permitir que qualquer origem faça requisições
@@ -77,6 +78,18 @@ if($uri === '/cadastro' && $method === "POST"){
 
     echo json_encode($response);
 }
+if ($uri === "/checkout" && $method === "POST") {
+    $data = json_decode(file_get_contents("php://input"), true);
+    
+
+    $checkService = new CheckoutService();
+    $response = $checkService->criarPagamento($data);
+
+    http_response_code($response['status']);
+    echo json_encode($response);
+    exit;
+}
+
 
 ?>
 
