@@ -66,10 +66,11 @@ if($uri === '/login' && $method === "POST"){
 }
 if($uri === '/cadastro' && $method === "POST"){
     $input = json_decode(file_get_contents('php://input'), true);
-    $email = $input['email'] ?? null;
-    $senha = $input['senha'] ?? null;
-    $cpf = $input['cpf'] ?? null;
-    $nome = $input['nome'] ?? null;
+    $email = $input['email'];
+    $senha = $input['senha'];
+    $cpf = $input['cpf'];
+    $nome = $input['nome'];
+    
 
     $response = $usuarioController->cadastrarUsuarioRota($email, $senha, $nome, $cpf);
 
