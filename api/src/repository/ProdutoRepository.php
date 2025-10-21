@@ -48,6 +48,7 @@ class ProdutoRepository {
                 $produto->setTitle($row['title']);
                 $produto->setPreco($row['preco']);
                 $produto->setDescricao($row['descricao']);
+                $produto->setImg($row['img']);
                 return $produto;
             }
     
