@@ -44,17 +44,7 @@ function Header (){
                     </li>
                   </div>
         
-                  {/* Ícones */}
-                  <li className="hover:scale-110">
-                    <a href="#search">
-                      <img src={search} alt="Search" />
-                    </a>
-                  </li>
-                  <li className="hover:scale-110">
-                    <a href="#bag">
-                      <img src={bag} alt="Bag" />
-                    </a>
-                  </li>
+
         
                   {/* Botão hamburguer */}
                   <div
