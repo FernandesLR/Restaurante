@@ -1,9 +1,6 @@
 import w from '../../assets/woman.png'
 import b from '../../assets/back.png'
 import p from '../../assets/play.png'
-import pastel from '../../assets/pastel.png'
-import coca from '../../assets/coca.png'
-import pepsi from '../../assets/pepsi.png'
 import Card from '../../components/card'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -15,19 +12,21 @@ function Home() {
   const [produtos, setProdutos] = useState([]);      // Carrinho
   const [dados, setDados] = useState([]);            // Produtos da API
   const [loading, setLoading] = useState(true);      // Estado de carregamento
+  const [user, setUser] = useState('');
+
+
+  
 
   // Buscar produtos só uma vez
   useEffect(() => {
+    const userName = localStorage.getItem('userName');
+    if (userName) setUser(userName);
+
     const pegarProdutos = async () => {
       try {
-        const resp = await fetch("http://localhost:8000/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
+        const resp = await fetch("http://localhost:8000/", { headers: { "Content-Type": "application/json" } });
         const data = await resp.json();
-        setDados(data); // seta os produtos vindos da API
+        setDados(data);
       } catch (error) {
         console.log('Erro ao pegar os dados:', error);
       } finally {
@@ -46,7 +45,7 @@ function Home() {
   return (
     <>
 
-      <Header />
+      <Header user={user} />
 
       <section 
         className="flex flex-col-reverse md:flex-row items-center justify-evenly gap-10 mt-24 mb-80" 
