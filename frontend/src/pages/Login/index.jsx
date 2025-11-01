@@ -39,6 +39,16 @@ export default function LoginCadastro() {
       });
       const data = await resp.json();
       alert(data.status === 200 ? "Login realizado!" : "Credenciais inválidas.");
+
+      if(data.status === 200 && data.data){
+          localStorage.setItem('token', data.data.token);
+          localStorage.setItem('id', data.data.id);
+          localStorage.setItem('userName', data.data.nome);
+          localStorage.setItem('email', data.data.email);
+      }
+
+      setForm({ email: '', senha: '', nome: '', cpf: '' });
+      window.location.href = '/home';
     } catch {
       alert("Erro ao tentar login.");
     }
